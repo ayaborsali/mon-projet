@@ -3,12 +3,14 @@ import { Save, AlertCircle, DollarSign, Clock, Camera, Wifi, Trash2, Plus } from
 import { ParkingConfig, PricingRule } from '../types/parking';
 
 // Service dédié pour les appels API
+// Service dédié pour les appels API avec Netlify Functions
 class SettingsApiService {
-  private baseUrl = 'http://localhost:3001/api';
+  private baseUrl = '/.netlify/functions/settings';
 
   async fetchConfig(): Promise<{ config: ParkingConfig; pricingRules: PricingRule[] }> {
     try {
-      const response = await fetch(`${this.baseUrl}/settings`);
+      console.log('🔄 Chargement depuis Netlify Functions...');
+      const response = await fetch(`${this.baseUrl}/get-settings`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -19,6 +21,8 @@ class SettingsApiService {
       if (data.success === false) {
         throw new Error(data.error || 'Erreur lors du chargement');
       }
+
+      console.log('✅ Données reçues:', data.config.totalSpaces, 'places');
 
       return {
         config: this.normalizeConfig(data.config),
@@ -32,9 +36,12 @@ class SettingsApiService {
 
   async saveConfig(config: ParkingConfig, pricingRules: PricingRule[]): Promise<void> {
     try {
-      console.log('💾 Envoi des données au serveur:', { config, pricingRules });
+      console.log('💾 Envoi vers Netlify Functions...', { 
+        places: config.totalSpaces, 
+        rules: pricingRules.length 
+      });
       
-      const response = await fetch(`${this.baseUrl}/settings`, {
+      const response = await fetch(`${this.baseUrl}/save-settings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
