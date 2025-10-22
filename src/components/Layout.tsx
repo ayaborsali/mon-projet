@@ -108,9 +108,9 @@ const Layout: React.FC<LayoutProps> = ({ onSignOut }) => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/alerts?limit=10');
+        const response = await fetch('http://localhost:3001/api/alerts?limit=10');
         if (response.ok) {
-          const data = await response.json();
+          const data = await response.json();z
           const notificationsData: Notification[] = data.alerts.map((alert: any) => ({
             id: alert._id || alert.id,
             title: alert.title,

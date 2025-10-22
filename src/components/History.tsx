@@ -45,7 +45,7 @@ const History: React.FC = () => {
       setLoading(true);
 
       // Charger les sessions de l'utilisateur
-      const sessionsResponse = await fetch(`https://fascinating-longma-ef3754.netlify.app/api/sessions?userId=${userData.id}`);
+      const sessionsResponse = await fetch(`http://localhost:3001/api/sessions?userId=${userData.id}`);
       if (sessionsResponse.ok) {
         const sessionsData = await sessionsResponse.json();
         // Trier par date décroissante
@@ -57,7 +57,7 @@ const History: React.FC = () => {
       }
 
       // Charger les transactions de l'utilisateur
-      const transactionsResponse = await fetch(`https://fascinating-longma-ef3754.netlify.app/api/transactions?userId=${userData.id}`);
+      const transactionsResponse = await fetch(`http://localhost:3001/api/transactions?userId=${userData.id}`);
       if (transactionsResponse.ok) {
         const transactionsData = await transactionsResponse.json();
         // Trier par date décroissante

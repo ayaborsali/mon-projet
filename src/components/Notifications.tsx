@@ -50,13 +50,13 @@ const Notifications: React.FC = () => {
   // Service API pour MongoDB
   const ApiService = {
     async getNotifications(): Promise<Notification[]> {
-      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/alerts');
+      const response = await fetch('http://localhost:3001/api/alerts');
       const data = await response.json();
       return data.alerts || [];
     },
 
     async markAsRead(notificationId: string): Promise<void> {
-      await fetch(`https://fascinating-longma-ef3754.netlify.app/api/alerts/${notificationId}/read`, {
+      await fetch(`http://localhost:3001/api/alerts/${notificationId}/read`, {
         method: 'PUT'
       });
     },
@@ -64,7 +64,7 @@ const Notifications: React.FC = () => {
     async markAllAsRead(notificationIds: string[]): Promise<void> {
       await Promise.all(
         notificationIds.map(id => 
-          fetch(`https://fascinating-longma-ef3754.netlify.app/api/alerts/${id}/read`, {
+          fetch(`http://localhost:3001/api/alerts/${id}/read`, {
             method: 'PUT'
           })
         )
@@ -72,7 +72,7 @@ const Notifications: React.FC = () => {
     },
 
     async deleteNotification(notificationId: string): Promise<void> {
-      await fetch(`https://fascinating-longma-ef3754.netlify.app/api/alerts/${notificationId}`, {
+      await fetch(`http://localhost:3001/api/alerts/${notificationId}`, {
         method: 'DELETE'
       });
     },
@@ -80,7 +80,7 @@ const Notifications: React.FC = () => {
     async deleteMultipleNotifications(notificationIds: string[]): Promise<void> {
       await Promise.all(
         notificationIds.map(id => 
-          fetch(`https://fascinating-longma-ef3754.netlify.app/api/alerts/${id}`, {
+          fetch(`http://localhost:3001/api/alerts/${id}`, {
             method: 'DELETE'
           })
         )

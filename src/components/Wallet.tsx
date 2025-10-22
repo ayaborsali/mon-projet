@@ -32,14 +32,14 @@ const Wallet: React.FC = () => {
       setLoading(true);
       
       // Charger le solde de l'utilisateur
-      const userResponse = await fetch(`https://fascinating-longma-ef3754.netlify.app/api/users/${userData.id}`);
+      const userResponse = await fetch(`http://localhost:3001/api/users/${userData.id}`);
       if (userResponse.ok) {
         const user = await userResponse.json();
         setBalance(user.walletBalance || 0);
       }
 
       // Charger les transactions de l'utilisateur
-      const transactionsResponse = await fetch(`https://fascinating-longma-ef3754.netlify.app/api/transactions?userId=${userData.id}`);
+      const transactionsResponse = await fetch(`http://localhost:3001/api/transactions?userId=${userData.id}`);
       if (transactionsResponse.ok) {
         const transactionsData = await transactionsResponse.json();
         // Trier par date décroissante
@@ -79,7 +79,7 @@ const Wallet: React.FC = () => {
       };
 
       // Mettre à jour le solde de l'utilisateur
-      await fetch(`https://fascinating-longma-ef3754.netlify.app/api/users/${userData.id}`, {
+      await fetch(`http://localhost:3001/api/users/${userData.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const Wallet: React.FC = () => {
       });
 
       // Créer la transaction
-      await fetch('https://fascinating-longma-ef3754.netlify.app/api/transactions', {
+      await fetch('http://localhost:3001/api/transactions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -4,7 +4,7 @@ import { ParkingConfig, PricingRule } from '../types/parking';
 
 // Service dédié pour les appels API
 class SettingsApiService {
-  private baseUrl = 'https://fascinating-longma-ef3754.netlify.app/api';
+  private baseUrl = 'http://localhost:3001/api';
 
   async fetchConfig(): Promise<{ config: ParkingConfig; pricingRules: PricingRule[] }> {
     try {

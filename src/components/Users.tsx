@@ -61,7 +61,7 @@ interface Notification {
 
 // Service dédié pour les appels API
 class UsersApiService {
-private baseUrl = 'https://fascinating-longma-ef3754.netlify.app/api';
+private baseUrl = 'http://localhost:3001/api';
  ;
 
   async fetchUsers(): Promise<User[]> {
