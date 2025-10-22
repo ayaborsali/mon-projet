@@ -1,31 +1,41 @@
-// netlify/functions/login.ts
-import { Handler } from '@netlify/functions';
+import { MongoClient } from "mongodb";
 
-export const handler: Handler = async (event, context) => {
+// URL de ta base MongoDB (mettre dans Netlify Environment Variables)
+const MONGODB_URI = process.env.MONGO_URI;
+
+const client = new MongoClient(MONGODB_URI);
+
+export async function handler(event) {
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
+  }
+
   try {
-    const { email, password } = JSON.parse(event.body || '{}');
+    const { email, password } = JSON.parse(event.body);
 
-    // Ici tu ferais la vérification dans MongoDB
-    // Exemple simulé :
-    if (email === 'admin@smartparking.com' && password === 'admin123') {
+    await client.connect();
+    const db = client.db("smartparking");
+    const users = db.collection("users");
+
+    const user = await users.findOne({ email, password });
+
+    if (!user) {
       return {
-        statusCode: 200,
-        body: JSON.stringify({
-          success: true,
-          token: 'fake-jwt-token',
-          user: { email, role: 'admin' }
-        })
+        statusCode: 401,
+        body: JSON.stringify({ success: false, error: "Email ou mot de passe invalide" }),
       };
     }
 
     return {
-      statusCode: 401,
-      body: JSON.stringify({ success: false, error: 'Email ou mot de passe invalide' })
+      statusCode: 200,
+      body: JSON.stringify({
+        success: true,
+        token: "fake-jwt-token", // tu peux générer un vrai JWT ici
+        user: { email: user.email, role: user.role },
+      }),
     };
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, error: 'Erreur serveur' })
-    };
+    console.error(err);
+    return { statusCode: 500, body: JSON.stringify({ success: false, error: "Erreur serveur" }) };
   }
-};
+}
