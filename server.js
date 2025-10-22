@@ -1170,7 +1170,7 @@ app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/in-service',
 // ==================== ROUTES HISTORIQUE ====================
 
 // Récupérer l'historique d'une place
-app.get('/api/parking/history/:spaceNumber', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/parking/history/:spaceNumber', async (req, res) => {
   try {
     const { spaceNumber } = req.params;
     const collection = db.collection('spaceStatusHistory');
@@ -1187,7 +1187,7 @@ app.get('/api/parking/history/:spaceNumber', async (req, res) => {
 });
 
 // Récupérer tout l'historique
-app.get('/api/parking/history', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/parking/history', async (req, res) => {
   try {
     const { limit = 100, page = 1 } = req.query;
     const collection = db.collection('spaceStatusHistory');
@@ -1217,7 +1217,7 @@ app.get('/api/parking/history', async (req, res) => {
 // ==================== ROUTES ALERTES ====================
 
 // Récupérer les alertes
-app.get('/api/alerts', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/alerts', async (req, res) => {
   try {
     const { limit = 10 } = req.query;
     const collection = db.collection('alerts');
@@ -1234,7 +1234,7 @@ app.get('/api/alerts', async (req, res) => {
 });
 
 // Marquer une alerte comme lue
-app.put('/api/alerts/:id/read', async (req, res) => {
+app.put('https://fascinating-longma-ef3754.netlify.app/api/alerts/:id/read', async (req, res) => {
   try {
     const { id } = req.params;
     const collection = db.collection('alerts');
@@ -1253,7 +1253,7 @@ app.put('/api/alerts/:id/read', async (req, res) => {
 // ==================== ROUTES PAIEMENTS ====================
 
 // GET /api/payments - Récupérer TOUS les paiements
-app.get('/api/payments', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/payments', async (req, res) => {
   try {
     console.log('📊 Endpoint /api/payments appelé');
     
@@ -1296,7 +1296,7 @@ app.get('/api/payments', async (req, res) => {
 });
 
 // POST /api/payments - Créer un NOUVEAU paiement
-app.post('/api/payments', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/payments', async (req, res) => {
   try {
     const { sessionId, amount, paymentMethod, status = 'completed' } = req.body;
 
@@ -1343,7 +1343,7 @@ app.post('/api/payments', async (req, res) => {
 });
 
 // Endpoint de santé pour payments
-app.get('/api/payments/health', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/payments/health', async (req, res) => {
   res.json({ 
     status: 'OK', 
     service: 'payments',
@@ -1354,7 +1354,7 @@ app.get('/api/payments/health', async (req, res) => {
 // ==================== ROUTES SETTINGS ====================
 
 // Récupérer la configuration
-app.get('/api/settings', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/settings', async (req, res) => {
   try {
     const settingsCollection = db.collection('settings');
     
@@ -1404,7 +1404,7 @@ app.get('/api/settings', async (req, res) => {
 });
 
 // Sauvegarder la configuration
-app.post('/api/settings', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/settings', async (req, res) => {
   try {
     const { config, pricingRules } = req.body;
     
@@ -1458,7 +1458,7 @@ app.post('/api/settings', async (req, res) => {
 // ==================== ROUTES UTILITAIRES ====================
 
 // Nettoyer les réservations expirées
-app.post('/api/parking/cleanup-expired', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/cleanup-expired', async (req, res) => {
   try {
     const collection = db.collection('parkingSpaces');
     const now = new Date();
@@ -1518,7 +1518,7 @@ app.post('/api/parking/cleanup-expired', async (req, res) => {
 });
 
 // Statistiques
-app.get('/api/stats', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/stats', async (req, res) => {
   try {
     const spacesCollection = db.collection('parkingSpaces');
     const sessionsCollection = db.collection('sessions');
@@ -1561,7 +1561,7 @@ app.get('/api/stats', async (req, res) => {
 });
 
 // Route de santé
-app.get('/api/health', (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
     timestamp: new Date(),
@@ -1572,7 +1572,7 @@ app.get('/api/health', (req, res) => {
 // ==================== ROUTE SESSION PAR ID ====================
 
 // Récupérer une session par son ID
-app.get('/api/sessions/:id', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/sessions/:id', async (req, res) => {
   try {
     const { id } = req.params;
     
@@ -1608,7 +1608,7 @@ app.get('/api/sessions/:id', async (req, res) => {
 });
 
 // ==================== DÉMARRAGE SERVEUR ====================
-
+/*
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`🚀 Backend MongoDB running on http://localhost:${PORT}`);
@@ -1620,4 +1620,4 @@ connectDB().then(() => {
     console.log(`👤 Demo operator: operator@smartparking.com / operator123`);
     console.log(`👤 Demo customer: customer@smartparking.com / customer123`);
   });
-}).catch(console.error);
+}).catch(console.error);*/
