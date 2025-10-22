@@ -19,7 +19,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
     setError(null);
 
     try {
-      const res = await fetch("https://fascinating-longma-ef3754.netlify.app//api/auth/login", {
+      const res = await fetch("https://fascinating-longma-ef3754.netlify.app/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
