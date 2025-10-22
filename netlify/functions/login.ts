@@ -1,9 +1,9 @@
 import { MongoClient } from "mongodb";
 
 // URL de ta base MongoDB (mettre dans Netlify Environment Variables)
-const MONGODB_URI = process.env.MONGO_URI;
+const uri = process.env.MONGODB_URI;
 
-const client = new MongoClient(MONGODB_URI);
+const client = new MongoClient(uri);
 
 export async function handler(event) {
   if (event.httpMethod !== "POST") {
