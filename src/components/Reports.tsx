@@ -30,7 +30,7 @@ interface Payment {
 
 // Configuration robuste avec fallbacks
 const getApiBaseUrl = (): string => {
-  return 'http://localhost:3001/api';
+  return 'https://fascinating-longma-ef3754.netlify.app/api';
 };
 
 const API_BASE_URL = getApiBaseUrl();

@@ -24,7 +24,7 @@ const ParkingMap: React.FC = () => {
   const ApiService = {
     // Parking Spaces
     async getParkingSpaces(): Promise<ParkingSpace[]> {
-      const response = await fetch('http://localhost:3001/api/parking/spaces');
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/spaces');
       if (!response.ok) {
         throw new Error(`Erreur HTTP ${response.status}: ${response.statusText}`);
       }
@@ -32,7 +32,7 @@ const ParkingMap: React.FC = () => {
     },
 
     async updateParkingSpace(spaceNumber: string, updates: any): Promise<void> {
-      const response = await fetch(`http://localhost:3001/api/parking/spaces/${spaceNumber}`, {
+      const response = await fetch(`https://fascinating-longma-ef3754.netlify.app/api/parking/spaces/${spaceNumber}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updates)
@@ -44,7 +44,7 @@ const ParkingMap: React.FC = () => {
 
     // Sessions
     async getActiveSessions(): Promise<ParkingSession[]> {
-      const response = await fetch('http://localhost:3001/api/sessions?status=active');
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/sessions?status=active');
       if (!response.ok) {
         throw new Error(`Erreur HTTP ${response.status}`);
       }
@@ -54,7 +54,7 @@ const ParkingMap: React.FC = () => {
 
     // Réservations
     async reserveSpace(spaceNumber: string, plate: string, vehicleType: string): Promise<void> {
-      const response = await fetch('http://localhost:3001/api/parking/reserve', {
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/reserve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ spaceNumber, plate, vehicleType })
@@ -66,7 +66,7 @@ const ParkingMap: React.FC = () => {
     },
 
     async cancelReservation(spaceNumber: string): Promise<void> {
-      const response = await fetch('http://localhost:3001/api/parking/cancel-reservation', {
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/cancel-reservation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ spaceNumber })
@@ -77,7 +77,7 @@ const ParkingMap: React.FC = () => {
     },
 
     async setOutOfService(spaceNumber: string): Promise<void> {
-      const response = await fetch('http://localhost:3001/api/parking/out-of-service', {
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/out-of-service', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ spaceNumber })
@@ -88,7 +88,7 @@ const ParkingMap: React.FC = () => {
     },
 
     async setInService(spaceNumber: string): Promise<void> {
-      const response = await fetch('http://localhost:3001/api/parking/in-service', {
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/in-service', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ spaceNumber })
@@ -99,7 +99,7 @@ const ParkingMap: React.FC = () => {
     },
 
     async occupySpace(spaceNumber: string, sessionId: string, plate: string, vehicleType: string): Promise<void> {
-      const response = await fetch('http://localhost:3001/api/parking/occupy', {
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/occupy', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ spaceNumber, sessionId, plate, vehicleType })
@@ -110,7 +110,7 @@ const ParkingMap: React.FC = () => {
     },
 
     async freeSpace(spaceNumber: string, sessionId: string): Promise<void> {
-      const response = await fetch('http://localhost:3001/api/parking/free', {
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/free', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ spaceNumber, sessionId })
@@ -121,7 +121,7 @@ const ParkingMap: React.FC = () => {
     },
 
     async cleanupExpiredReservations(): Promise<void> {
-      const response = await fetch('http://localhost:3001/api/parking/cleanup-expired', {
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/cleanup-expired', {
         method: 'POST'
       });
       if (!response.ok) {
@@ -131,7 +131,7 @@ const ParkingMap: React.FC = () => {
 
     // Configuration - Récupérer les settings complets
     async getParkingConfig(): Promise<ParkingConfig> {
-      const response = await fetch('http://localhost:3001/api/settings');
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/settings');
       if (!response.ok) {
         throw new Error(`Erreur HTTP ${response.status}`);
       }
@@ -141,7 +141,7 @@ const ParkingMap: React.FC = () => {
 
     // Générer les places avec le totalSpaces de la configuration
     async generateParkingSpaces(totalSpaces: number): Promise<void> {
-      const response = await fetch('http://localhost:3001/api/parking/generate-spaces', {
+      const response = await fetch('https://fascinating-longma-ef3754.netlify.app/api/parking/generate-spaces', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ totalSpaces })

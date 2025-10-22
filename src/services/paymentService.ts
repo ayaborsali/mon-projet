@@ -1,6 +1,6 @@
 import { Payment } from '../types/parking';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = 'https://fascinating-longma-ef3754.netlify.app/api';
 
 export const paymentService = {
   // Récupérer TOUS les paiements DIRECTEMENT depuis MongoDB
