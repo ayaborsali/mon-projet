@@ -20,7 +20,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
 
     try {
     // Utilisez l'URL relative pour Netlify Functions
-    const res = await fetch("/.netlify/functions/auth/login", {
+    const res = await fetch("/.netlify/functions/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
