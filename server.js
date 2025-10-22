@@ -106,7 +106,7 @@ const demoUsers = [
 
 // ==================== ROUTES AUTHENTIFICATION ====================
 
-app.post('/api/auth/login', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -178,7 +178,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-app.get('/api/auth/verify', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/auth/verify', async (req, res) => {
   try {
     const token = req.headers.authorization?.replace('Bearer ', '');
     
@@ -214,7 +214,7 @@ app.get('/api/auth/verify', async (req, res) => {
 // ==================== ROUTES UTILISATEURS ====================
 
 // GET /api/users - Récupérer tous les utilisateurs
-app.get('/api/users', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/users', async (req, res) => {
   try {
     console.log('📡 Récupération de tous les utilisateurs');
     
@@ -257,7 +257,7 @@ app.get('/api/users', async (req, res) => {
 });
 
 // GET /api/users/:id - Récupérer un utilisateur spécifique
-app.get('/api/users/:id', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/users/:id', async (req, res) => {
   try {
     const { id } = req.params;
     
@@ -309,7 +309,7 @@ app.get('/api/users/:id', async (req, res) => {
 });
 
 // POST /api/users - Créer un nouvel utilisateur
-app.post('/api/users', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/users', async (req, res) => {
   try {
     const { name, email, phone, password, role } = req.body;
 
@@ -373,7 +373,7 @@ app.post('/api/users', async (req, res) => {
 });
 
 // PUT /api/users/:id - Mettre à jour un utilisateur
-app.put('/api/users/:id', async (req, res) => {
+app.put('https://fascinating-longma-ef3754.netlify.app/api/users/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const updates = req.body;
@@ -423,7 +423,7 @@ app.put('/api/users/:id', async (req, res) => {
 });
 
 // DELETE /api/users/:id - Supprimer un utilisateur
-app.delete('/api/users/:id', async (req, res) => {
+app.delete('https://fascinating-longma-ef3754.netlify.app/api/users/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -466,7 +466,7 @@ app.delete('/api/users/:id', async (req, res) => {
 // ==================== ROUTES TRANSACTIONS ====================
 
 // GET /api/transactions - Récupérer les transactions d'un utilisateur
-app.get('/api/transactions', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/transactions', async (req, res) => {
   try {
     const { userId } = req.query;
 
@@ -499,7 +499,7 @@ app.get('/api/transactions', async (req, res) => {
 });
 
 // POST /api/transactions - Créer une transaction
-app.post('/api/transactions', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/transactions', async (req, res) => {
   try {
     const transactionData = req.body;
 
@@ -539,7 +539,7 @@ app.post('/api/transactions', async (req, res) => {
 // ==================== ROUTES NOTIFICATIONS ====================
 
 // GET /api/notifications - Récupérer les notifications d'un utilisateur
-app.get('/api/notifications', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/notifications', async (req, res) => {
   try {
     const { userId } = req.query;
 
@@ -572,7 +572,7 @@ app.get('/api/notifications', async (req, res) => {
 });
 
 // POST /api/notifications - Créer une notification
-app.post('/api/notifications', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/notifications', async (req, res) => {
   try {
     const notificationData = req.body;
 
@@ -613,7 +613,7 @@ app.post('/api/notifications', async (req, res) => {
 // ==================== ROUTES SESSIONS ====================
 
 // Créer une session
-app.post('/api/sessions', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/sessions', async (req, res) => {
   try {
     const { vehicle, spaceNumber, userId } = req.body;
     const sessionsCollection = db.collection('sessions');
@@ -651,7 +651,7 @@ app.post('/api/sessions', async (req, res) => {
 });
 
 // Récupérer les sessions avec filtre par utilisateur
-app.get('/api/sessions', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/sessions', async (req, res) => {
   try {
     const { status, userId, page = 1, limit = 20 } = req.query;
     const sessionsCollection = db.collection('sessions');
@@ -687,7 +687,7 @@ app.get('/api/sessions', async (req, res) => {
 });
 
 // Mettre à jour une session
-app.put('/api/sessions/:id', async (req, res) => {
+app.put('https://fascinating-longma-ef3754.netlify.app/api/sessions/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const updates = req.body;
@@ -708,7 +708,7 @@ app.put('/api/sessions/:id', async (req, res) => {
 // ==================== ROUTES PARKING ====================
 
 // Générer les places de parking (ancienne version)
-app.post('/api/parking/generate', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/generate', async (req, res) => {
   try {
     const { totalSpaces } = req.body;
     const collection = db.collection('parkingSpaces');
@@ -745,7 +745,7 @@ app.post('/api/parking/generate', async (req, res) => {
 });
 
 // NOUVELLE ROUTE - Générer dynamiquement les places basées sur totalSpaces
-app.post('/api/parking/generate-spaces', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/generate-spaces', async (req, res) => {
   try {
     const { totalSpaces } = req.body;
     const collection = db.collection('parkingSpaces');
@@ -825,7 +825,7 @@ app.post('/api/parking/generate-spaces', async (req, res) => {
 });
 
 // Récupérer toutes les places
-app.get('/api/parking/spaces', async (req, res) => {
+app.get('https://fascinating-longma-ef3754.netlify.app/api/parking/spaces', async (req, res) => {
   try {
     const collection = db.collection('parkingSpaces');
     const spaces = await collection.find({}).sort({ number: 1 }).toArray();
@@ -854,7 +854,7 @@ app.get('/api/parking/spaces/:number', async (req, res) => {
 });
 
 // Réserver une place
-app.post('/api/parking/reserve', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/reserve', async (req, res) => {
   try {
     const { spaceNumber, plate, vehicleType } = req.body;
     const collection = db.collection('parkingSpaces');
@@ -918,7 +918,7 @@ app.post('/api/parking/reserve', async (req, res) => {
 });
 
 // Occuper une place
-app.post('/api/parking/occupy', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/occupy', async (req, res) => {
   try {
     const { spaceNumber, sessionId, plate, vehicleType } = req.body;
     const collection = db.collection('parkingSpaces');
@@ -972,7 +972,7 @@ app.post('/api/parking/occupy', async (req, res) => {
 });
 
 // Libérer une place
-app.post('/api/parking/free', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/free', async (req, res) => {
   try {
     const { spaceNumber, sessionId } = req.body;
     const collection = db.collection('parkingSpaces');
@@ -1020,7 +1020,7 @@ app.post('/api/parking/free', async (req, res) => {
 });
 
 // Annuler une réservation
-app.post('/api/parking/cancel-reservation', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/cancel-reservation', async (req, res) => {
   try {
     const { spaceNumber } = req.body;
     const collection = db.collection('parkingSpaces');
@@ -1074,7 +1074,7 @@ app.post('/api/parking/cancel-reservation', async (req, res) => {
 });
 
 // Mettre une place hors service
-app.post('/api/parking/out-of-service', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/out-of-service', async (req, res) => {
   try {
     const { spaceNumber } = req.body;
     const collection = db.collection('parkingSpaces');
@@ -1123,7 +1123,7 @@ app.post('/api/parking/out-of-service', async (req, res) => {
 });
 
 // Remettre une place en service
-app.post('/api/parking/in-service', async (req, res) => {
+app.post('https://fascinating-longma-ef3754.netlify.app/api/parking/in-service', async (req, res) => {
   try {
     const { spaceNumber } = req.body;
     const collection = db.collection('parkingSpaces');
